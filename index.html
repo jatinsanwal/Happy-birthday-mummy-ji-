@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mummy 💕</title>
+
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  background: linear-gradient(135deg,#ff9ecb,#ff4d88);
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.page{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.active{display:flex;}
+
+h1{font-size:32px;}
+p{font-size:18px;}
+
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4d88;
+  font-weight:bold;
+  margin-top:20px;
+}
+
+.box{
+  background:rgba(255,255,255,0.2);
+  padding:20px;
+  border-radius:20px;
+  margin:20px;
+}
+
+/* hearts */
+.heart{
+  position:absolute;
+  color:pink;
+  animation:float 5s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="your-music.mp3"></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <h1>Happy Birthday Mummy 💕</h1>
+  <p>Sabse pyari mummy ke liye 💖</p>
+  <button onclick="next(2)">Enter 🎀</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h1>🎂 Cake Time 🎂</h1>
+  <div style="font-size:100px;" id="cake">🎂</div>
+  <button onclick="cutCake()">Cut Cake 🍰</button>
+  <p id="msg"></p>
+  <button onclick="next(3)">Next 💕</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="box">
+    <h1>💌 Message</h1>
+    <p>
+      Mummy aap meri duniya ho 💖<br>
+      Aapke bina sab adhura hai 💕<br>
+      Aap meri strength ho 💫<br>
+      Thank you for everything ❤️
+    </p>
+  </div>
+  <button onclick="next(4)">Memories 🎥</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>🎬 Memories</h1>
+  <video controls width="80%">
+    <source src="your-video.mp4">
+  </video>
+  <p>Yeh moments meri life ke best hain 💖</p>
+  <button onclick="next(5)">Final 🎁</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h1>I Love You Mummy 💕</h1>
+  <button onclick="music()">🎶 Music</button>
+</div>
+
+<script>
+function next(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function cutCake(){
+  document.getElementById("msg").innerHTML="🎉 Cake Cut! Happy Birthday 💕";
+  document.getElementById("cake").innerHTML="🍰";
+}
+
+function music(){
+  let m=document.getElementById("music");
+  m.paused?m.play():m.pause();
+}
+
+// hearts
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.innerHTML="💗";
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+},500);
+</script>
+
+</body>
+</html>
